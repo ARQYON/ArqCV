@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900 font-sans;
+  }
+
+  * {
+    @apply box-border;
+  }
+}
+
+@layer components {
+  .input {
+    @apply w-full px-3 py-2 text-sm border border-gray-200 rounded-lg
+           bg-white text-gray-900 placeholder-gray-400
+           focus:outline-none focus:ring-2 focus:ring-arq-400 focus:border-transparent
+           transition-all duration-150;
+  }
+
+  .textarea {
+    @apply input resize-none;
+  }
+
+  .label {
+    @apply block text-xs font-medium text-gray-500 mb-1 uppercase tracking-wide;
+  }
+
+  .section-card {
+    @apply bg-white rounded-xl border border-gray-100 shadow-sm p-5 mb-4;
+  }
+
+  .section-title {
+    @apply text-sm font-semibold text-gray-700 mb-4 flex items-center gap-2;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 bg-arq-600 text-white text-sm font-medium rounded-lg
+           hover:bg-arq-700 active:bg-arq-800
+           transition-colors duration-150 flex items-center gap-2;
+  }
+
+  .btn-ghost {
+    @apply px-3 py-1.5 text-sm text-gray-500 rounded-lg
+           hover:bg-gray-100 hover:text-gray-700
+           transition-colors duration-150 flex items-center gap-1.5;
+  }
+
+  .btn-danger {
+    @apply px-2 py-1 text-xs text-red-400 rounded
+           hover:bg-red-50 hover:text-red-600
+           transition-colors duration-150;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
