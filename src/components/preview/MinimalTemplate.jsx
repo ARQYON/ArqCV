@@ -23,8 +23,9 @@ function DateRange({ start, end, current }) {
 }
 
 /* ─── main template ───────────────────────── */
-export default function MinimalTemplate({ cv }) {
+export default function MinimalTemplate({ cv, accentColor }) {
   const { personal: p, experience, education, skills, projects } = cv;
+  const accent = accentColor || '#4361ff';
 
   return (
     <div
@@ -37,7 +38,7 @@ export default function MinimalTemplate({ cv }) {
         <h1 className="text-2xl font-bold text-gray-900 leading-tight">
           {p.name || 'Your Name'}
         </h1>
-        <p className="text-sm font-medium text-arq-600 mt-0.5">
+        <p className="text-sm font-medium mt-0.5" style={{ color: accent }}>
           {p.title || 'Your Title'}
         </p>
 
@@ -116,7 +117,7 @@ export default function MinimalTemplate({ cv }) {
                 <div className="flex justify-between items-baseline">
                   <span className="font-semibold text-[11px]">{proj.name}</span>
                   {proj.url && (
-                    <span className="text-[10px] text-arq-500">{proj.url}</span>
+                    <span className="text-[10px]" style={{ color: accent }}>{proj.url}</span>
                   )}
                 </div>
                 {proj.tech && (

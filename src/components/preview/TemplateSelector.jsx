@@ -3,6 +3,23 @@ import { useCV } from '../../context/CVContext';
 
 const TEMPLATES = [
   {
+    id: 'classic',
+    name: 'Classic',
+    description: 'Two-column header, accent bar sections.',
+    preview: (
+      <div className="w-full h-full bg-white p-1.5">
+        <div className="flex justify-between mb-1">
+          <div><div className="h-1.5 w-8 bg-gray-800 rounded mb-0.5" /><div className="h-1 w-5 bg-blue-400 rounded" /></div>
+          <div className="space-y-0.5"><div className="h-0.5 w-7 bg-gray-200 rounded" /><div className="h-0.5 w-6 bg-gray-200 rounded" /></div>
+        </div>
+        <div className="h-px bg-blue-400 mb-1.5" />
+        <div className="space-y-0.5">
+          <div className="h-1 w-full bg-gray-100 rounded" /><div className="h-1 w-5/6 bg-gray-100 rounded" />
+        </div>
+      </div>
+    ),
+  },
+  {
     id: 'minimal',
     name: 'Minimal',
     description: 'Clean, single-column. Best for most jobs.',

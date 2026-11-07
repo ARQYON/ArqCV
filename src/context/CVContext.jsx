@@ -1,31 +1,43 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
+import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
 import { defaultCV } from '../data/defaultCV';
 
 const CVContext = createContext(null);
 
-export function CVProvider({ children }) {
-  const [cv, setCV] = useState(defaultCV);
-  const [activeTemplate, setActiveTemplate] = useState('minimal');
+const STORAGE_KEY = 'arqcv_data';
 
-  // Update a top-level section (personal, etc.)
+function loadSaved() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+export function CVProvider({ children }) {
+  const saved = loadSaved();
+  const [cv, setCV]                     = useState(saved?.cv || defaultCV);
+  const [activeTemplate, setActiveTemplate] = useState(saved?.activeTemplate || 'minimal');
+  const [accentColor, setAccentColor]   = useState(saved?.accentColor || '#4361ff');
+
+  // Auto-save to localStorage on every change
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ cv, activeTemplate, accentColor }));
+    } catch { /* storage full or blocked — silent */ }
+  }, [cv, activeTemplate, accentColor]);
+
   const updateSection = useCallback((section, field, value) => {
-    setCV(prev => ({
-      ...prev,
-      [section]: { ...prev[section], [field]: value },
-    }));
+    setCV(prev => ({ ...prev, [section]: { ...prev[section], [field]: value } }));
   }, []);
 
-  // Update an array item (experience, education, projects)
   const updateArrayItem = useCallback((section, id, field, value) => {
     setCV(prev => ({
       ...prev,
-      [section]: prev[section].map(item =>
-        item.id === id ? { ...item, [field]: value } : item
-      ),
+      [section]: prev[section].map(item => item.id === id ? { ...item, [field]: value } : item),
     }));
   }, []);
 
-  // Add a new blank item to an array section
   const addArrayItem = useCallback((section, blank) => {
     setCV(prev => ({
       ...prev,
@@ -33,33 +45,28 @@ export function CVProvider({ children }) {
     }));
   }, []);
 
-  // Remove an item from an array section
   const removeArrayItem = useCallback((section, id) => {
-    setCV(prev => ({
-      ...prev,
-      [section]: prev[section].filter(item => item.id !== id),
-    }));
+    setCV(prev => ({ ...prev, [section]: prev[section].filter(item => item.id !== id) }));
   }, []);
 
-  // Update skills (stored as array of strings)
   const updateSkills = useCallback((raw) => {
-    const skills = raw
-      .split(',')
-      .map(s => s.trim())
-      .filter(Boolean);
+    const skills = raw.split(',').map(s => s.trim()).filter(Boolean);
     setCV(prev => ({ ...prev, skills }));
+  }, []);
+
+  const clearCV = useCallback(() => {
+    setCV(defaultCV);
+    setActiveTemplate('minimal');
+    setAccentColor('#4361ff');
+    try { localStorage.removeItem(STORAGE_KEY); } catch { /* ignore */ }
   }, []);
 
   return (
     <CVContext.Provider value={{
-      cv,
-      activeTemplate,
-      setActiveTemplate,
-      updateSection,
-      updateArrayItem,
-      addArrayItem,
-      removeArrayItem,
-      updateSkills,
+      cv, activeTemplate, setActiveTemplate,
+      accentColor, setAccentColor,
+      updateSection, updateArrayItem, addArrayItem, removeArrayItem,
+      updateSkills, clearCV,
     }}>
       {children}
     </CVContext.Provider>

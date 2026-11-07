@@ -21,8 +21,12 @@ function MainSection({ title, children }) {
   );
 }
 
-export default function ModernTemplate({ cv }) {
+export default function ModernTemplate({ cv, accentColor }) {
   const { personal: p, experience, education, skills, projects } = cv;
+  const accent = accentColor || '#4361ff';
+
+  // darken accent for sidebar bg
+  const sidebarBg = accent;
 
   return (
     <div
@@ -32,8 +36,8 @@ export default function ModernTemplate({ cv }) {
     >
       {/* ── Sidebar ───────────────────────────── */}
       <div
-        className="bg-arq-700 text-white flex-shrink-0"
-        style={{ width: '72mm', padding: '10mm 7mm' }}
+        className="text-white flex-shrink-0"
+        style={{ width: '72mm', padding: '10mm 7mm', backgroundColor: sidebarBg }}
       >
         {/* Name block */}
         <div className="mb-6">
