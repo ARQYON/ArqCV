@@ -61,12 +61,19 @@ export function CVProvider({ children }) {
     try { localStorage.removeItem(STORAGE_KEY); } catch { /* ignore */ }
   }, []);
 
+  // Called after a successful importCV() parse
+  const loadImported = useCallback(({ cv: importedCV, activeTemplate: t, accentColor: c }) => {
+    setCV(importedCV);
+    setActiveTemplate(t);
+    setAccentColor(c);
+  }, []);
+
   return (
     <CVContext.Provider value={{
       cv, activeTemplate, setActiveTemplate,
       accentColor, setAccentColor,
       updateSection, updateArrayItem, addArrayItem, removeArrayItem,
-      updateSkills, clearCV,
+      updateSkills, clearCV, loadImported,
     }}>
       {children}
     </CVContext.Provider>
