@@ -23,7 +23,7 @@ export default function ClassicTemplate({ cv, accentColor }) {
       className="bg-white w-full font-sans text-gray-800"
       style={{ minHeight: '297mm', padding: '12mm 14mm', fontSize: '11px', lineHeight: '1.5' }}
     >
-      {/* Header — two-column */}
+      {/* Header - two-column */}
       <div className="flex justify-between items-start mb-6 pb-4 border-b-2" style={{ borderColor: accent }}>
         <div>
           <h1 className="text-[22px] font-bold text-gray-900 leading-tight">
@@ -61,7 +61,7 @@ export default function ClassicTemplate({ cv, accentColor }) {
                   </div>
                   {(exp.startDate || exp.endDate) && (
                     <span className="text-[9px] text-gray-400">
-                      {exp.startDate} — {exp.current ? 'Present' : exp.endDate}
+                      {exp.startDate} - {exp.current ? 'Present' : exp.endDate}
                     </span>
                   )}
                 </div>
@@ -89,7 +89,7 @@ export default function ClassicTemplate({ cv, accentColor }) {
                   {edu.gpa && <span className="text-[9px] text-gray-400">GPA: {edu.gpa}</span>}
                 </div>
                 {(edu.startDate || edu.endDate) && (
-                  <span className="text-[9px] text-gray-400">{edu.startDate} — {edu.endDate}</span>
+                  <span className="text-[9px] text-gray-400">{edu.startDate} - {edu.endDate}</span>
                 )}
               </div>
             ) : null

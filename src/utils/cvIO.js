@@ -1,5 +1,5 @@
 /**
- * ArqCV — CV data import / export utilities
+ * ArqCV - CV data import / export utilities
  * Saves the full CV state (data + template + accent color) as a .json file.
  * Lets users back up their CV and restore it on any device or browser.
  */

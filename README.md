@@ -1,4 +1,4 @@
-# ArqCV — Free CV Builder by ARQYON
+# ArqCV - Free CV Builder by ARQYON
 
 > Build a professional CV in minutes. No signup. No watermark. No payment. Instant PDF download.
 
@@ -11,13 +11,13 @@
 
 ## Features
 
-- **3 Templates** — Minimal, Modern (sidebar), Classic (two-column header)
-- **Live Preview** — See your CV update as you type
-- **PDF Export** — High-quality, A4-sized, no watermark
-- **Accent Color** — 6 presets + custom color picker; updates the entire CV live
-- **Auto-save** — Your data is saved in the browser automatically
-- **JSON Export/Import** — Back up your CV as a file and restore it on any device
-- **No account required** — Nothing is stored on any server
+- **3 Templates** - Minimal, Modern (sidebar), Classic (two-column header)
+- **Live Preview** - See your CV update as you type
+- **PDF Export** - High-quality, A4-sized, no watermark
+- **Accent Color** - 6 presets + custom color picker; updates the entire CV live
+- **Auto-save** - Your data is saved in the browser automatically
+- **JSON Export/Import** - Back up your CV as a file and restore it on any device
+- **No account required** - Nothing is stored on any server
 
 ---
 
@@ -69,9 +69,9 @@ src/
 │   ├── form/          # Input forms (Personal, Experience, Education, Skills, Projects)
 │   ├── layout/        # Header, FormPanel, IOToolbar
 │   └── preview/       # Templates + PreviewPanel + TemplateSelector
-├── context/           # CVContext — global state + localStorage
+├── context/           # CVContext - global state + localStorage
 ├── data/              # defaultCV schema
-└── utils/             # cvIO.js — JSON export/import
+└── utils/             # cvIO.js - JSON export/import
 ```
 
 ---

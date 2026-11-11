@@ -24,7 +24,7 @@ export function CVProvider({ children }) {
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify({ cv, activeTemplate, accentColor }));
-    } catch { /* storage full or blocked — silent */ }
+    } catch { /* storage full or blocked - silent */ }
   }, [cv, activeTemplate, accentColor]);
 
   const updateSection = useCallback((section, field, value) => {
